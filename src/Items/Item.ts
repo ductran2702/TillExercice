@@ -17,7 +17,7 @@ export const ITEM_DETAILS = {
   },
 };
 
-export class Item {
+export abstract class Item {
   private __discountPrice: number;
   private __isDiscount: boolean;
   constructor(
