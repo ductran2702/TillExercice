@@ -8,50 +8,24 @@ export const RULE_NAMES = {
 export class PricingRule {
   constructor(private __name: string, private __rules: Array<any>) {}
 
-  getName() {
+  getName(): string {
     return this.__name;
   }
 
-  getRules(itemName: string, ruleName: string) {
-    return this.__rules.find((rule) => {
+  getRule(itemName: string, ruleName: string): number {
+    const rule = this.__rules.find((rule) => {
       return rule.name === itemName && rule[ruleName] !== undefined;
     });
+    return rule && rule[ruleName];
   }
 
-  setRules(rules: Array<any>) {
+  setRules(rules: Array<any>): PricingRule {
     this.__rules = rules;
-    return this.__rules;
-  }
-
-  addRule(rule: object) {
-    this.__rules.unshift(rule);
     return this;
   }
 
-  applyRules(itemList: Item[]) {
-    let countMediumPizza = 0;
-    for (var i = 0; i < itemList.length; i++) {
-      const itemName = itemList[i].getName();
-      const discountRule = this.getRules(itemName, RULE_NAMES.DISCOUNT);
-      const dealRule = this.getRules(itemName, RULE_NAMES.DEAL);
-      if (discountRule) {
-        itemList[i].discount(discountRule[RULE_NAMES.DISCOUNT]);
-      }
-      if (dealRule) {
-        countMediumPizza++;
-        if (countMediumPizza % dealRule[RULE_NAMES.DEAL] === 0) {
-          countMediumPizza = 0;
-          itemList[i].discount(0);
-        }
-      }
-    }
-  }
-
-  total(itemList: Item[]) {
-    let result = 0;
-    for (var i = 0; i < itemList.length; i++) {
-      result += itemList[i].getFinalPrice();
-    }
-    return result;
+  addRule(rule: object): PricingRule {
+    this.__rules.unshift(rule);
+    return this;
   }
 }
