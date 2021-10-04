@@ -10,7 +10,7 @@ class DummyPizza extends Item {
 }
 
 describe("Test Item", () => {
-  it("Test Item", async function () {
+  it("Test Item class", async function () {
     const pizza = new DummyPizza();
     expect(pizza.getFinalPrice()).toEqual(100);
     pizza.discount(50);
