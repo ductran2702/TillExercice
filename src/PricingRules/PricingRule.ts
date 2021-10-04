@@ -13,12 +13,9 @@ export class PricingRule {
   }
 
   getRules(itemName: string, ruleName: string) {
-    return this.__rules
-      .slice()
-      .reverse()
-      .find((rule) => {
-        return rule.name === itemName && rule[ruleName] !== undefined;
-      });
+    return this.__rules.find((rule) => {
+      return rule.name === itemName && rule[ruleName] !== undefined;
+    });
   }
 
   setRules(rules: Array<any>) {
@@ -27,7 +24,7 @@ export class PricingRule {
   }
 
   addRule(rule: object) {
-    this.__rules.push(rule);
+    this.__rules.unshift(rule);
     return this;
   }
 

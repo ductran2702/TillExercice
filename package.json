@@ -4,7 +4,8 @@
   "description": "TillExercice",
   "main": "index.js",
   "scripts": {
-    "index": "npx tsc & node ./dist/index.js"
+    "start": "npm run build && node ./dist/index.js",
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",

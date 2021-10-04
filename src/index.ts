@@ -95,6 +95,10 @@ var co5 = new Checkout(
       name: ITEM_DETAILS.MEDIUM.name,
       DISCOUNT: 199.99,
     })
+    .addRule({
+      name: ITEM_DETAILS.SMALL.name,
+      DISCOUNT: 90.99,
+    })
 );
 co5.add(new MediumPizza());
 co5.add(new MediumPizza());
