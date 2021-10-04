@@ -133,42 +133,4 @@ describe("Test PricingRule", () => {
       pricingRule.getRule(_ITEM_DETAILS.LARGE.name, _RULE_NAMES.DISCOUNT)
     ).toEqual(undefined);
   });
-
-  class DummyMediumPizza extends Item {
-    constructor() {
-      super(_ITEM_DETAILS.MEDIUM.name, "description1", 100);
-    }
-  }
-  class DummyLargePizza extends Item {
-    constructor() {
-      super(_ITEM_DETAILS.LARGE.name, "description2", 500);
-    }
-  }
-  it("Test total with default rule", async function () {
-    const co = new Checkout(new PricingRule("default rule", []));
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyLargePizza());
-    co.add(new DummyLargePizza());
-    expect(co.total()).toEqual(1500);
-  });
-
-  it("Test total with pricingRule", async function () {
-    pricingRule = new PricingRule(
-      _INIT_PRICING_RULE_FACEBOOK.name,
-      _INIT_PRICING_RULE_FACEBOOK.rulesSet
-    );
-    const co = new Checkout(pricingRule);
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyMediumPizza());
-    co.add(new DummyLargePizza());
-    co.add(new DummyLargePizza());
-    expect(co.total()).toEqual(1179.94);
-  });
 });
