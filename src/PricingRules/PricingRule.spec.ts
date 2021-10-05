@@ -1,5 +1,3 @@
-import { Checkout } from "../Checkout";
-import { Item } from "../Items/Item";
 import { PricingRule } from "./PricingRule";
 
 const _RULE_NAMES = {
@@ -32,16 +30,12 @@ const _INIT_PRICING_RULE_FACEBOOK = {
   ],
 };
 
-let pricingRule: PricingRule;
-beforeAll(() => {
-  pricingRule = new PricingRule(
-    _INIT_PRICING_RULE_FACEBOOK.name,
-    _INIT_PRICING_RULE_FACEBOOK.rulesSet
-  );
-});
-
 describe("Test PricingRule", () => {
   it("Test constructor", async function () {
+    const pricingRule = new PricingRule(
+      _INIT_PRICING_RULE_FACEBOOK.name,
+      _INIT_PRICING_RULE_FACEBOOK.rulesSet
+    );
     expect(
       pricingRule.getRule(_ITEM_DETAILS.MEDIUM.name, _RULE_NAMES.DEAL)
     ).toEqual(5);
@@ -57,6 +51,11 @@ describe("Test PricingRule", () => {
   });
 
   it("Test addRule discount", async function () {
+    const pricingRule = new PricingRule(
+      _INIT_PRICING_RULE_FACEBOOK.name,
+      _INIT_PRICING_RULE_FACEBOOK.rulesSet
+    );
+
     pricingRule.addRule({
       name: _ITEM_DETAILS.MEDIUM.name,
       DISCOUNT: 99.99,
@@ -77,6 +76,11 @@ describe("Test PricingRule", () => {
   });
 
   it("Test addRule deal", async function () {
+    const pricingRule = new PricingRule(
+      _INIT_PRICING_RULE_FACEBOOK.name,
+      _INIT_PRICING_RULE_FACEBOOK.rulesSet
+    );
+
     pricingRule.addRule({
       name: _ITEM_DETAILS.MEDIUM.name,
       DEAL: 4,
@@ -97,6 +101,10 @@ describe("Test PricingRule", () => {
   });
 
   it("Test addRule deal again", async function () {
+    const pricingRule = new PricingRule(
+      _INIT_PRICING_RULE_FACEBOOK.name,
+      _INIT_PRICING_RULE_FACEBOOK.rulesSet
+    );
     pricingRule.addRule({
       name: _ITEM_DETAILS.MEDIUM.name,
       DEAL: 3,
@@ -117,6 +125,10 @@ describe("Test PricingRule", () => {
   });
 
   it("Test setRules", async function () {
+    const pricingRule = new PricingRule(
+      _INIT_PRICING_RULE_FACEBOOK.name,
+      _INIT_PRICING_RULE_FACEBOOK.rulesSet
+    );
     const newRulesSet = [{ name: _ITEM_DETAILS.MEDIUM.name, DEAL: 3 }];
     pricingRule.setRules(newRulesSet);
 
